@@ -16,42 +16,65 @@
         button { padding: 8px 12px; cursor: pointer; background-color: #0073e6; color: white; border: none; }
         button:hover { background-color: #005bb5; }
         form { margin: 20px 0; }
+        #loginForm { display: flex; flex-direction: column; align-items: center; }
+        #app { display: none; }
     </style>
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="Logo Dinas Pariwisata"> 
-        Dinas Pariwisata Kab. Wakatobi
-    </header>
-    <h2>Data Kunjungan Wisatawan</h2>
+    <div id="loginForm">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button onclick="checkLogin()">Masuk</button>
+    </div>
     
-    <form id="visitorForm">
-        <input type="text" id="name" placeholder="Nama" required>
-        <input type="date" id="date" required>
-        <input type="text" id="place" placeholder="Nama Objek Wisata" required>
-        <input type="text" id="origin" placeholder="Asal Daerah" required>
-        <select id="gender">
-            <option value="Laki-laki">Laki-laki</option>
-            <option value="Perempuan">Perempuan</option>
-        </select>
-        <button type="button" onclick="addVisitor()">Tambah</button>
-    </form>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>Nama</th>
-                <th>Tanggal Masuk</th>
-                <th>Nama Objek</th>
-                <th>Asal Daerah</th>
-                <th>Jenis Kelamin</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody id="visitorTable"></tbody>
-    </table>
+    <div id="app">
+        <header>
+            <img src="logo.png" alt="Logo Dinas Pariwisata"> 
+            Dinas Pariwisata Kab. Wakatobi
+        </header>
+        <h2>Data Kunjungan Wisatawan</h2>
+        
+        <form id="visitorForm">
+            <input type="text" id="name" placeholder="Nama" required>
+            <input type="date" id="date" required>
+            <input type="text" id="place" placeholder="Nama Objek Wisata" required>
+            <input type="text" id="origin" placeholder="Asal Daerah" required>
+            <select id="gender">
+                <option value="Laki-laki">Laki-laki</option>
+                <option value="Perempuan">Perempuan</option>
+            </select>
+            <button type="button" onclick="addVisitor()">Tambah</button>
+        </form>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Tanggal Masuk</th>
+                    <th>Nama Objek</th>
+                    <th>Asal Daerah</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="visitorTable"></tbody>
+        </table>
+    </div>
     
     <script>
+        function checkLogin() {
+            let user = document.getElementById('username').value;
+            let pass = document.getElementById('password').value;
+            
+            if (user === 'admin' && pass === '123654') {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('app').style.display = 'block';
+            } else {
+                alert('Username atau password salah!');
+            }
+        }
+        
         function addVisitor() {
             let name = document.getElementById('name').value;
             let date = document.getElementById('date').value;
