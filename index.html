@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Pengunjung Wisata</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f0f8ff; text-align: center; }
+        header { background-color: #0073e6; color: white; padding: 15px; font-size: 20px; font-weight: bold; }
+        h2 { color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: white; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #0073e6; color: white; }
+        input, select { margin: 5px; padding: 8px; width: 200px; }
+        button { padding: 8px 12px; cursor: pointer; background-color: #0073e6; color: white; border: none; }
+        button:hover { background-color: #005bb5; }
+        form { margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <header>Dinas Pariwisata Kab. Wakatobi</header>
+    <h2>Data Kunjungan Wisatawan</h2>
+    
+    <form id="visitorForm">
+        <input type="text" id="name" placeholder="Nama" required>
+        <input type="date" id="date" required>
+        <input type="text" id="place" placeholder="Nama Objek Wisata" required>
+        <select id="gender">
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+        </select>
+        <button type="button" onclick="addVisitor()">Tambah</button>
+    </form>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Tanggal Masuk</th>
+                <th>Nama Objek</th>
+                <th>Jenis Kelamin</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="visitorTable"></tbody>
+    </table>
+    
+    <script>
+        function addVisitor() {
+            let name = document.getElementById('name').value;
+            let date = document.getElementById('date').value;
+            let place = document.getElementById('place').value;
+            let gender = document.getElementById('gender').value;
+            
+            if (!name || !date || !place) {
+                alert('Harap isi semua data!');
+                return;
+            }
+            
+            let table = document.getElementById('visitorTable');
+            let row = table.insertRow();
+            row.innerHTML = `<td>${name}</td><td>${date}</td><td>${place}</td><td>${gender}</td><td><button onclick="deleteRow(this)">Hapus</button></td>`;
+            
+            document.getElementById('visitorForm').reset();
+        }
+        
+        function deleteRow(btn) {
+            let row = btn.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+    </script>
+</body>
+</html>
