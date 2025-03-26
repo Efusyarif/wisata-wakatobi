@@ -29,6 +29,7 @@
         <input type="text" id="name" placeholder="Nama" required>
         <input type="date" id="date" required>
         <input type="text" id="place" placeholder="Nama Objek Wisata" required>
+        <input type="text" id="origin" placeholder="Asal Daerah" required>
         <select id="gender">
             <option value="Laki-laki">Laki-laki</option>
             <option value="Perempuan">Perempuan</option>
@@ -42,6 +43,7 @@
                 <th>Nama</th>
                 <th>Tanggal Masuk</th>
                 <th>Nama Objek</th>
+                <th>Asal Daerah</th>
                 <th>Jenis Kelamin</th>
                 <th>Aksi</th>
             </tr>
@@ -54,16 +56,17 @@
             let name = document.getElementById('name').value;
             let date = document.getElementById('date').value;
             let place = document.getElementById('place').value;
+            let origin = document.getElementById('origin').value;
             let gender = document.getElementById('gender').value;
             
-            if (!name || !date || !place) {
+            if (!name || !date || !place || !origin) {
                 alert('Harap isi semua data!');
                 return;
             }
             
             let table = document.getElementById('visitorTable');
             let row = table.insertRow();
-            row.innerHTML = `<td>${name}</td><td>${date}</td><td>${place}</td><td>${gender}</td><td><button onclick="deleteRow(this)">Hapus</button></td>`;
+            row.innerHTML = `<td>${name}</td><td>${date}</td><td>${place}</td><td>${origin}</td><td>${gender}</td><td><button onclick="deleteRow(this)">Hapus</button></td>`;
             
             document.getElementById('visitorForm').reset();
         }
